@@ -38,11 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Column(
+      body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[],
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
