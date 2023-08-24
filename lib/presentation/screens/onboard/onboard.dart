@@ -14,12 +14,12 @@ class Onboard extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  "assets/images/app_logo.png",
+                  MyAssets.assetsImagesAppLogo,
                   color: MyColors.primaryColor,
-                  height: 42,
-                  width: 139,
+                  height: 42.h,
+                  width: 139.w,
                 ),
-                const SizedBox(height: 66),
+                SizedBox(height: 63.h),
                 PageView(
                   controller: _onboardViewModel.pageController,
                   children: const [
@@ -28,42 +28,44 @@ class Onboard extends StatelessWidget {
                     OnboardThird(),
                   ],
                 ).expand(),
-                const SizedBox(height: 61),
+                SizedBox(height: 61.h),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      AutoRouter.of(context).push(const AuthRoute()),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: MyColors.primaryColor,
-                      minimumSize: Size(MediaQuery.of(context).size.width, 46),
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width, 50.h),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(11))),
+                          borderRadius: BorderRadius.circular(11.r))),
                   child: "Get Started"
                       .text
-                      .size(16)
+                      .size(16.sp)
                       .fontWeight(FontWeight.w700)
                       .make(),
                 ),
-                const SizedBox(height: 61),
+                SizedBox(height: 61.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     "Skip"
                         .text
                         .color(MyColors.primaryColor)
-                        .size(16)
+                        .size(16.sp)
                         .fontWeight(FontWeight.w700)
                         .make(),
                     SmoothPageIndicator(
                       controller: _onboardViewModel.pageController,
                       count: 3,
-                      effect: const WormEffect(
+                      effect: WormEffect(
                           activeDotColor: MyColors.primaryColor,
-                          dotHeight: 12.0,
-                          dotWidth: 12.0),
+                          dotHeight: 12.h,
+                          dotWidth: 12.w),
                     ),
                     "Next"
                         .text
                         .color(MyColors.primaryColor)
-                        .size(16)
+                        .size(16.sp)
                         .fontWeight(FontWeight.w700)
                         .make(),
                   ],

@@ -18,7 +18,7 @@ class _SplashState extends State<Splash> {
   moveToOnboard() async {
     await Future.delayed(const Duration(seconds: 4), () {
       AutoRouter.of(context).push(
-        const OnboardRoute(),
+        OnboardRoute(),
       );
     });
   }
@@ -30,10 +30,10 @@ class _SplashState extends State<Splash> {
       body: SafeArea(
         child: Center(
           child: Image.asset(
-            "assets/images/app_logo.png",
+            MyAssets.assetsImagesAppLogo,
             color: MyColors.secondaryColor,
-            height: 42,
-            width: 139,
+            height: 42.h,
+            width: 139.w,
           ),
         ),
       ),
