@@ -1,3 +1,3 @@
 class MyAssets {
-  MyAssets();
+  const MyAssets._();
 }

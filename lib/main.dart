@@ -1,3 +1,4 @@
+import 'package:blog_app/core/constants/my_colors.dart';
 import 'package:blog_app/core/constants/my_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Blog App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: MyStrings.myAppName),
@@ -26,7 +27,6 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
