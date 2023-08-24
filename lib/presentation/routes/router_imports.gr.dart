@@ -22,7 +22,7 @@ abstract class $AppRouter extends _i3.RootStackRouter {
     OnboardRoute.name: (routeData) {
       return _i3.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.Onboard(),
+        child: _i1.Onboard(),
       );
     },
     SplashRoute.name: (routeData) {
