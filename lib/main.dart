@@ -1,6 +1,7 @@
-import 'package:blog_app/core/constants/my_colors.dart';
-import 'package:blog_app/core/constants/my_strings.dart';
 import 'package:flutter/material.dart';
+
+import 'core/constants/my_strings.dart';
+import 'core/themes/app_themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Blog App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.primaryColor),
-        useMaterial3: true,
-      ),
+      theme: AppThemes.light,
+      darkTheme: AppThemes.dark,
       home: const MyHomePage(title: MyStrings.myAppName),
     );
   }
