@@ -29,11 +29,13 @@ class _SplashState extends State<Splash> {
       backgroundColor: MyColors.primaryColor,
       body: SafeArea(
         child: Center(
-          child: Image.asset(
-            MyAssets.assetsImagesAppLogo,
-            color: MyColors.secondaryColor,
-            height: 42.h,
-            width: 139.w,
+          child: FadedScaleAnimation(
+            child: Image.asset(
+              MyAssets.assetsImagesAppLogo,
+              color: MyColors.secondaryColor,
+              height: 42.h,
+              width: 139.w,
+            ),
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:blog_app/core/constants/my_colors.dart';
 import 'package:blog_app/presentation/common_widgets/common_widgets_imports.dart';
