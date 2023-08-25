@@ -5,6 +5,11 @@ class MyAssets {
   /// assets/images/app_logo.png
   static const String assetsImagesAppLogo = "assets/images/app_logo.png";
 
+  /// Assets for assetsImagesAppLogoWhite
+  /// assets/images/app_logo_white.png
+  static const String assetsImagesAppLogoWhite =
+      "assets/images/app_logo_white.png";
+
   /// Assets for assetsImagesAuthBg
   /// assets/images/auth_bg.png
   static const String assetsImagesAuthBg = "assets/images/auth_bg.png";

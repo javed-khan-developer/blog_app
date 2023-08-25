@@ -20,14 +20,36 @@ class _AuthState extends State<Auth> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: SafeArea(
-            child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    MyAssets.assetsImagesAppLogo,
+                    MyAssets.assetsImagesAppLogoWhite,
                     height: 42.h,
-                    width: 139,
-                  )
+                    width: 139.w,
+                  ).centered(),
+                  const Spacer(),
+                  "Explore the world,\nBillions of Thoughts."
+                      .text
+                      .size(28.sp)
+                      .white
+                      .fontWeight(FontWeight.w700)
+                      .make(),
+                  SizedBox(height: 20.h),
+                  PrimaryButton(
+                    title: "Login",
+                    onPressed: () =>
+                        AutoRouter.of(context).push(const LoginRoute()),
+                  ),
+                  SizedBox(height: 12.h),
+                  OutlineButton(
+                    title: "Register",
+                    onPressed: () =>
+                        AutoRouter.of(context).push(const RegisterRoute()),
+                  ),
+                  SizedBox(height: 12.h),
                 ],
               ),
             ),

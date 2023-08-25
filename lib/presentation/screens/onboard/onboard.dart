@@ -29,21 +29,10 @@ class Onboard extends StatelessWidget {
                   ],
                 ).expand(),
                 SizedBox(height: 61.h),
-                ElevatedButton(
-                  onPressed: () =>
-                      AutoRouter.of(context).push(const AuthRoute()),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: MyColors.primaryColor,
-                      minimumSize:
-                          Size(MediaQuery.of(context).size.width, 50.h),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(11.r))),
-                  child: "Get Started"
-                      .text
-                      .size(16.sp)
-                      .fontWeight(FontWeight.w700)
-                      .make(),
-                ),
+                PrimaryButton(
+                    onPressed: () =>
+                        AutoRouter.of(context).push(const AuthRoute()),
+                    title: "Get Started"),
                 SizedBox(height: 61.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
