@@ -8,61 +8,69 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:blog_app/presentation/screens/auth/auth_imports.dart' as _i1;
 import 'package:blog_app/presentation/screens/auth/login/login_imports.dart'
-    as _i3;
+    as _i4;
 import 'package:blog_app/presentation/screens/auth/register/register_imports.dart'
-    as _i5;
+    as _i6;
 import 'package:blog_app/presentation/screens/general/general_imports.dart'
     as _i2;
+import 'package:blog_app/presentation/screens/general/home/home_imports.dart'
+    as _i3;
 import 'package:blog_app/presentation/screens/onboard/onboard_imports.dart'
-    as _i4;
+    as _i5;
 import 'package:blog_app/presentation/screens/splash/splash_imports.dart'
-    as _i6;
-import 'package:flutter/material.dart' as _i8;
+    as _i7;
+import 'package:flutter/material.dart' as _i9;
 
-abstract class $AppRouter extends _i7.RootStackRouter {
+abstract class $AppRouter extends _i8.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     AuthRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.Auth(),
       );
     },
     GeneralRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.General(),
       );
     },
-    LoginRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+    HomeDetailsRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.Login(),
+        child: const _i3.HomeDetails(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i4.Login(),
       );
     },
     OnboardRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardRouteArgs>(
           orElse: () => const OnboardRouteArgs());
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.Onboard(key: args.key),
+        child: _i5.Onboard(key: args.key),
       );
     },
     RegisterRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.Register(),
+        child: const _i6.Register(),
       );
     },
     SplashRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
+      return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.Splash(),
+        child: const _i7.Splash(),
       );
     },
   };
@@ -70,8 +78,8 @@ abstract class $AppRouter extends _i7.RootStackRouter {
 
 /// generated route for
 /// [_i1.Auth]
-class AuthRoute extends _i7.PageRouteInfo<void> {
-  const AuthRoute({List<_i7.PageRouteInfo>? children})
+class AuthRoute extends _i8.PageRouteInfo<void> {
+  const AuthRoute({List<_i8.PageRouteInfo>? children})
       : super(
           AuthRoute.name,
           initialChildren: children,
@@ -79,13 +87,13 @@ class AuthRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'AuthRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.General]
-class GeneralRoute extends _i7.PageRouteInfo<void> {
-  const GeneralRoute({List<_i7.PageRouteInfo>? children})
+class GeneralRoute extends _i8.PageRouteInfo<void> {
+  const GeneralRoute({List<_i8.PageRouteInfo>? children})
       : super(
           GeneralRoute.name,
           initialChildren: children,
@@ -93,13 +101,27 @@ class GeneralRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'GeneralRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.Login]
-class LoginRoute extends _i7.PageRouteInfo<void> {
-  const LoginRoute({List<_i7.PageRouteInfo>? children})
+/// [_i3.HomeDetails]
+class HomeDetailsRoute extends _i8.PageRouteInfo<void> {
+  const HomeDetailsRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          HomeDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeDetailsRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.Login]
+class LoginRoute extends _i8.PageRouteInfo<void> {
+  const LoginRoute({List<_i8.PageRouteInfo>? children})
       : super(
           LoginRoute.name,
           initialChildren: children,
@@ -107,15 +129,15 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.Onboard]
-class OnboardRoute extends _i7.PageRouteInfo<OnboardRouteArgs> {
+/// [_i5.Onboard]
+class OnboardRoute extends _i8.PageRouteInfo<OnboardRouteArgs> {
   OnboardRoute({
-    _i8.Key? key,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
           OnboardRoute.name,
           args: OnboardRouteArgs(key: key),
@@ -124,14 +146,14 @@ class OnboardRoute extends _i7.PageRouteInfo<OnboardRouteArgs> {
 
   static const String name = 'OnboardRoute';
 
-  static const _i7.PageInfo<OnboardRouteArgs> page =
-      _i7.PageInfo<OnboardRouteArgs>(name);
+  static const _i8.PageInfo<OnboardRouteArgs> page =
+      _i8.PageInfo<OnboardRouteArgs>(name);
 }
 
 class OnboardRouteArgs {
   const OnboardRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -140,9 +162,9 @@ class OnboardRouteArgs {
 }
 
 /// generated route for
-/// [_i5.Register]
-class RegisterRoute extends _i7.PageRouteInfo<void> {
-  const RegisterRoute({List<_i7.PageRouteInfo>? children})
+/// [_i6.Register]
+class RegisterRoute extends _i8.PageRouteInfo<void> {
+  const RegisterRoute({List<_i8.PageRouteInfo>? children})
       : super(
           RegisterRoute.name,
           initialChildren: children,
@@ -150,13 +172,13 @@ class RegisterRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'RegisterRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.Splash]
-class SplashRoute extends _i7.PageRouteInfo<void> {
-  const SplashRoute({List<_i7.PageRouteInfo>? children})
+/// [_i7.Splash]
+class SplashRoute extends _i8.PageRouteInfo<void> {
+  const SplashRoute({List<_i8.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -164,5 +186,5 @@ class SplashRoute extends _i7.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
