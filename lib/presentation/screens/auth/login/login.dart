@@ -88,7 +88,8 @@ class _LoginState extends State<Login> {
                         ),
                         40.h.heightBox,
                         PrimaryButton(
-                          onPressed: () {},
+                          onPressed: () =>
+                              AutoRouter.of(context).push(const GeneralRoute()),
                           title: "Login",
                         ),
                         20.h.heightBox,

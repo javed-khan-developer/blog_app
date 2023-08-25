@@ -14,6 +14,10 @@ class MyAssets {
   /// assets/images/auth_bg.png
   static const String assetsImagesAuthBg = "assets/images/auth_bg.png";
 
+  /// Assets for assetsImagesNetflix
+  /// assets/images/netflix.webp
+  static const String assetsImagesNetflix = "assets/images/netflix.webp";
+
   /// Assets for assetsImagesOnboard1
   /// assets/images/onboard1.png
   static const String assetsImagesOnboard1 = "assets/images/onboard1.png";
