@@ -30,9 +30,19 @@ class Onboard extends StatelessWidget {
                 ).expand(),
                 SizedBox(height: 61.h),
                 PrimaryButton(
-                  title: "Get Started",
+                  title: "Get Request",
                   onPressed: () {
-                    ApiClient().getTags();
+                    ApiClient().getRequest(path: ApiEndpoints.tags);
+                  },
+                  // AutoRouter.of(context).push(
+                  //   const AuthRoute(),
+                  // ),
+                ),
+                SizedBox(height: 10.h),
+                PrimaryButton(
+                  title: "Post Request",
+                  onPressed: () {
+                    ApiClient().postRequest(path: ApiEndpoints.addTags);
                   },
                   // AutoRouter.of(context).push(
                   //   const AuthRoute(),

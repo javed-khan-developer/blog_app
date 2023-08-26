@@ -9,6 +9,8 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../../../core/constants/my_assets.dart';
 import '../../../core/constants/my_colors.dart';
+import '../../../data/data_sources/remote/api_constants.dart';
+import '../../../data/data_sources/remote/api_endpoints.dart';
 import 'onboard_view_model.dart';
 import 'widgets/widgets_imports.dart';
 part 'onboard.dart';
