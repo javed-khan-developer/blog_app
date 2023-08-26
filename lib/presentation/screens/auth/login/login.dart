@@ -9,6 +9,43 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool isButtonEnable = false;
+
+  void _validateForm() {
+    if (_formKey.currentState!.validate()) {
+      AutoRouter.of(context).push(const GeneralRoute());
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Form Invalid")),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    _emailController.addListener(_checkButtonState);
+    _passwordController.addListener(_checkButtonState);
+    super.initState();
+  }
+
+  void _checkButtonState() {
+    final emailField = _emailController.text.isNotEmpty;
+    final passwordFiled = _passwordController.text.isNotEmpty;
+    setState(() {
+      isButtonEnable = emailField && passwordFiled;
+    });
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,82 +72,103 @@ class _LoginState extends State<Login> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        50.h.heightBox,
-                        "Login"
-                            .text
-                            .size(18.sp)
-                            .color(MyColors.primaryColor)
-                            .fontWeight(FontWeight.w700)
-                            .make()
-                            .centered(),
-                        48.h.heightBox,
-                        "Email".text.make(),
-                        8.h.heightBox,
-                        VxTextField(
-                          fillColor: Colors.transparent,
-                          borderColor: MyColors.primaryColor,
-                          borderType: VxTextFieldBorderType.roundLine,
-                          borderRadius: 10.r,
-                          prefixIcon: const Icon(Icons.email),
-                        ),
-                        20.h.heightBox,
-                        "Password".text.make(),
-                        8.h.heightBox,
-                        VxTextField(
-                          isPassword: true,
-                          obscureText: true,
-                          fillColor: Colors.transparent,
-                          borderColor: MyColors.primaryColor,
-                          borderType: VxTextFieldBorderType.roundLine,
-                          borderRadius: 10.r,
-                          prefixIcon: const Icon(Icons.lock),
-                        ),
-                        40.h.heightBox,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 200.w,
-                              child: CheckboxListTile(
-                                controlAffinity:
-                                    ListTileControlAffinity.leading,
-                                contentPadding: EdgeInsets.zero,
-                                value: false,
-                                onChanged: (value) {},
-                                title: "Remember Me".text.make(),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          50.h.heightBox,
+                          "Login"
+                              .text
+                              .size(18.sp)
+                              .color(MyColors.primaryColor)
+                              .fontWeight(FontWeight.w700)
+                              .make()
+                              .centered(),
+                          48.h.heightBox,
+                          "Email".text.make(),
+                          8.h.heightBox,
+                          VxTextField(
+                            controller: _emailController,
+                            validator: (value) {
+                              return _emailController.text.isEmpty
+                                  ? "email can not be empty"
+                                  : null;
+                            },
+                            fillColor: Colors.transparent,
+                            borderColor: MyColors.primaryColor,
+                            borderType: VxTextFieldBorderType.roundLine,
+                            borderRadius: 10.r,
+                            prefixIcon: const Icon(Icons.email),
+                          ),
+                          20.h.heightBox,
+                          "Password".text.make(),
+                          8.h.heightBox,
+                          VxTextField(
+                            controller: _passwordController,
+                            validator: (value) {
+                              return _passwordController.text.isEmpty
+                                  ? "password can not be empty"
+                                  : null;
+                            },
+                            isPassword: true,
+                            obscureText: true,
+                            fillColor: Colors.transparent,
+                            borderColor: MyColors.primaryColor,
+                            borderType: VxTextFieldBorderType.roundLine,
+                            borderRadius: 10.r,
+                            prefixIcon: const Icon(Icons.lock),
+                          ),
+                          40.h.heightBox,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 200.w,
+                                child: CheckboxListTile(
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                  contentPadding: EdgeInsets.zero,
+                                  value: false,
+                                  onChanged: (value) {},
+                                  title: "Remember Me".text.make(),
+                                ),
                               ),
-                            ),
-                            "Forgot Password".text.size(14).make()
-                          ],
-                        ),
-                        40.h.heightBox,
-                        PrimaryButton(
-                          onPressed: () =>
-                              AutoRouter.of(context).push(const GeneralRoute()),
-                          title: "Login",
-                        ),
-                        20.h.heightBox,
-                        "Don't have an account?"
-                            .richText
-                            .color(MyColors.primaryColor)
-                            .size(14)
-                            .semiBold
-                            .withTextSpanChildren(
-                          [
-                            TextSpan(
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => AutoRouter.of(context)
-                                    .push(const RegisterRoute()),
-                              text: " Sign Up",
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w700),
-                            )
-                          ],
-                        ).makeCentered()
-                      ],
+                              "Forgot Password".text.size(14).make()
+                            ],
+                          ),
+                          40.h.heightBox,
+                          isButtonEnable
+                              ? PrimaryButton(
+                                  onPressed: () {
+                                    _validateForm();
+                                  },
+                                  title: "Login",
+                                )
+                              : const Center(
+                                  child: ElevatedButton(
+                                      onPressed: null, child: Text("Login")),
+                                ),
+                          20.h.heightBox,
+                          "Don't have an account?"
+                              .richText
+                              .color(MyColors.primaryColor)
+                              .size(14)
+                              .semiBold
+                              .withTextSpanChildren(
+                            [
+                              TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => AutoRouter.of(context)
+                                      .push(const RegisterRoute()),
+                                text: " Sign Up",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ],
+                          ).makeCentered()
+                        ],
+                      ),
                     ),
                   ),
                 ),
