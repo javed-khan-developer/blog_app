@@ -50,6 +50,7 @@ dependencies:
   feather_icons: ^1.2.0
   flutter_screenutil: ^5.9.0
   animation_wrappers: ^3.0.0
+  flutter_quill: ^7.4.2
 
 dev_dependencies:
   flutter_test:
