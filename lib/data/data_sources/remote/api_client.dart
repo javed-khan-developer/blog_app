@@ -4,6 +4,7 @@ import 'package:blog_app/data/data_sources/remote/api_constants.dart';
 import 'package:blog_app/data/data_sources/remote/api_exception.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ApiClient {
   late Dio dio;
@@ -21,7 +22,7 @@ class ApiClient {
       var response = await dio.get(path);
       debugPrint("==========API Response==========");
       debugPrint("Status code : ${response.statusCode}");
-      log("API Response data : ${response.data}");
+      Vx.log("API Response data : ${response.data}");
       return response;
     } on DioException catch (e) {
       if (e.response != null) {

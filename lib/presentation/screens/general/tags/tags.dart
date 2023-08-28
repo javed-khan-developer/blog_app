@@ -8,6 +8,14 @@ class Tags extends StatefulWidget {
 }
 
 class _TagsState extends State<Tags> {
+  late TagsViewModel tagsViewModel;
+  @override
+  void initState() {
+    tagsViewModel = TagsViewModel(repository: context.read<Repository>());
+    tagsViewModel.fetchAllTags();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,32 +28,45 @@ class _TagsState extends State<Tags> {
           IconButton(onPressed: () {}, icon: const Icon(FeatherIcons.plus)),
         ],
       ),
-      body: ListView.separated(
-        itemCount: 10,
-        separatorBuilder: (context, index) => SizedBox(height: 10.h),
-        itemBuilder: (context, index) {
-          return Card(
-              child: ListTile(
-            leading: "${index + 1}".text.size(16.sp).make(),
-            title: "Title".text.size(16).make(),
-            trailing: SizedBox(
-              width: 100,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(FeatherIcons.edit2),
-                    color: MyColors.secondaryColor,
+      body: BlocBuilder<VelocityBloc<TagsModel>, VelocityState<TagsModel>>(
+        bloc: tagsViewModel.tagsModelBloc,
+        builder: (context, state) {
+          if (state is VelocityInitialState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is VelocityUpdateState) {
+            return ListView.separated(
+              itemCount: state.data.tags!.length,
+              separatorBuilder: (context, index) => SizedBox(height: 10.h),
+              itemBuilder: (context, index) {
+                var tagsData = state.data.tags![index];
+                return Card(
+                    child: ListTile(
+                  leading: "${tagsData.id}".text.size(16.sp).make(),
+                  title: "${tagsData.title}".text.size(16).make(),
+                  trailing: SizedBox(
+                    width: 100,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(FeatherIcons.edit2),
+                          color: MyColors.secondaryColor,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(FeatherIcons.trash),
+                          color: MyColors.primaryColor,
+                        ),
+                      ],
+                    ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(FeatherIcons.trash),
-                    color: MyColors.primaryColor,
-                  ),
-                ],
-              ),
-            ),
-          ));
+                ));
+              },
+            );
+          }
+          return const SizedBox();
         },
       ),
     );

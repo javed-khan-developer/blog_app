@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/themes/app_themes.dart';
+import 'data/repositories/respositories.dart';
+import 'data/repositories/tags_repo.dart';
 import 'presentation/routes/router_imports.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(MyApp());
+  runApp(RepositoryProvider(
+    create: (context) => Repository(
+      tagsRepo: TagsRepo(),
+    ),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

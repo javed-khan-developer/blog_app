@@ -54,7 +54,6 @@ class _GeneralState extends State<General> {
             sizeLarge: true, isHexagon: true, elevation: 2),
         onTap: (int index) => setState(() {
           visit = index;
-          print(visit);
         }),
       ),
     );
