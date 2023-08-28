@@ -17,6 +17,8 @@ class _LoginState extends State<Login> {
   void _validateForm() {
     if (_formKey.currentState!.validate()) {
       AutoRouter.of(context).push(const GeneralRoute());
+      _emailController.clear();
+      _passwordController.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Form Invalid")),

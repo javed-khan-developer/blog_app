@@ -19,6 +19,9 @@ class _RegisterState extends State<Register> {
   void _validateForm() {
     if (_formkey.currentState!.validate()) {
       AutoRouter.of(context).push(const GeneralRoute());
+      _emailController.clear();
+      _passwordController.clear();
+      _confirmPasswordController.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Form Invalid")),
