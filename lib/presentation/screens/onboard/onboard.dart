@@ -36,6 +36,9 @@ class Onboard extends StatelessWidget {
                         await SharedPreferences.getInstance();
                     var token = pref.getString("token");
                     Vx.log(token);
+                    // AutoRouter.of(context).push(
+                    //   const AuthRoute(),
+                    // );
                   },
                 ),
                 SizedBox(height: 61.h),
