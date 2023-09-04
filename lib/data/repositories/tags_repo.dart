@@ -1,5 +1,4 @@
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../presentation/screens/general/tags/tags_model.dart';
 import '../data_sources/remote/api_client.dart';
 import '../data_sources/remote/api_endpoints.dart';

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/themes/app_themes.dart';
+import 'data/repositories/login_repo.dart';
 import 'data/repositories/respositories.dart';
 import 'data/repositories/tags_repo.dart';
 import 'presentation/routes/router_imports.dart';
@@ -14,6 +15,7 @@ void main() {
   runApp(RepositoryProvider(
     create: (context) => Repository(
       tagsRepo: TagsRepo(),
+      authRepo: AuthRepo(),
     ),
     child: MyApp(),
   ));

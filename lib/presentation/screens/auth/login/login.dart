@@ -9,16 +9,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  bool isButtonEnable = false;
+  late LoginViewModel loginViewModel;
 
-  void _validateForm() {
-    if (_formKey.currentState!.validate()) {
-      AutoRouter.of(context).push(const GeneralRoute());
-      _emailController.clear();
-      _passwordController.clear();
+  void _validateFormAndLogin() {
+    if (loginViewModel._formKey.currentState!.validate()) {
+      loginViewModel.login(context);
+      loginViewModel.emailcontroller.clear();
+      loginViewModel.passwordcontroller.clear();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Form Invalid")),
@@ -28,23 +25,24 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    _emailController.addListener(_checkButtonState);
-    _passwordController.addListener(_checkButtonState);
+    loginViewModel = LoginViewModel(repository: context.read<Repository>());
+    loginViewModel.emailcontroller.addListener(_checkButtonState);
+    loginViewModel.passwordcontroller.addListener(_checkButtonState);
     super.initState();
   }
 
   void _checkButtonState() {
-    final emailField = _emailController.text.isNotEmpty;
-    final passwordFiled = _passwordController.text.isNotEmpty;
+    final emailField = loginViewModel.emailcontroller.text.isNotEmpty;
+    final passwordFiled = loginViewModel.passwordcontroller.text.isNotEmpty;
     setState(() {
-      isButtonEnable = emailField && passwordFiled;
+      loginViewModel.isButtonEnable = emailField && passwordFiled;
     });
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    loginViewModel.emailcontroller.dispose();
+    loginViewModel.passwordcontroller.dispose();
     super.dispose();
   }
 
@@ -75,7 +73,7 @@ class _LoginState extends State<Login> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Form(
-                      key: _formKey,
+                      key: loginViewModel._formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -91,9 +89,9 @@ class _LoginState extends State<Login> {
                           "Email".text.make(),
                           8.h.heightBox,
                           VxTextField(
-                            controller: _emailController,
+                            controller: loginViewModel.emailcontroller,
                             validator: (value) {
-                              return _emailController.text.isEmpty
+                              return loginViewModel.emailcontroller.text.isEmpty
                                   ? "email can not be empty"
                                   : null;
                             },
@@ -107,9 +105,10 @@ class _LoginState extends State<Login> {
                           "Password".text.make(),
                           8.h.heightBox,
                           VxTextField(
-                            controller: _passwordController,
+                            controller: loginViewModel.passwordcontroller,
                             validator: (value) {
-                              return _passwordController.text.isEmpty
+                              return loginViewModel
+                                      .passwordcontroller.text.isEmpty
                                   ? "password can not be empty"
                                   : null;
                             },
@@ -140,10 +139,10 @@ class _LoginState extends State<Login> {
                             ],
                           ),
                           40.h.heightBox,
-                          isButtonEnable
+                          loginViewModel.isButtonEnable
                               ? PrimaryButton(
                                   onPressed: () {
-                                    _validateForm();
+                                    _validateFormAndLogin();
                                   },
                                   title: "Login",
                                 )

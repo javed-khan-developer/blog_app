@@ -1,7 +1,11 @@
-import 'package:blog_app/data/repositories/tags_repo.dart';
+import 'login_repo.dart';
+import 'tags_repo.dart';
 
 class Repository {
   final TagsRepo tagsRepo;
-
-  Repository({required this.tagsRepo});
+  final AuthRepo authRepo;
+  Repository({
+    required this.tagsRepo,
+    required this.authRepo,
+  });
 }
