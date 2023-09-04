@@ -29,12 +29,12 @@ class ApiClient {
         debugPrint(e.response!.data);
         debugPrint(e.response!.headers.toString());
         debugPrint(e.response!.requestOptions.toString());
-        throw ApiExceptions(message: e.response!.statusMessage);
+        throw ApiExceptions(message: e.response!.statusMessage.toString());
       } else {
         debugPrint(e.requestOptions.toString());
         debugPrint(e.message);
       }
-      throw ApiExceptions(message: e.response!.statusMessage);
+      throw ApiExceptions(message: e.response!.statusMessage.toString());
     }
   }
 
@@ -59,12 +59,12 @@ class ApiClient {
         debugPrint(e.response!.data);
         debugPrint(e.response!.headers.toString());
         debugPrint(e.response!.requestOptions.toString());
-        throw ApiExceptions(message: e.response!.statusMessage);
+        throw ApiExceptions(message: e.response!.statusMessage.toString());
       } else {
         debugPrint(e.requestOptions.toString());
         debugPrint(e.message);
       }
-      throw ApiExceptions(message: e.response!.statusMessage);
+      throw ApiExceptions(message: e.response!.statusMessage.toString());
     }
   }
 }

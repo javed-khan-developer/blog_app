@@ -11,32 +11,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   late LoginViewModel loginViewModel;
 
-  void _validateFormAndLogin() {
-    if (loginViewModel._formKey.currentState!.validate()) {
-      loginViewModel.login(context);
-      loginViewModel.emailcontroller.clear();
-      loginViewModel.passwordcontroller.clear();
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Form Invalid")),
-      );
-    }
-  }
-
   @override
   void initState() {
     loginViewModel = LoginViewModel(repository: context.read<Repository>());
-    loginViewModel.emailcontroller.addListener(_checkButtonState);
-    loginViewModel.passwordcontroller.addListener(_checkButtonState);
     super.initState();
-  }
-
-  void _checkButtonState() {
-    final emailField = loginViewModel.emailcontroller.text.isNotEmpty;
-    final passwordFiled = loginViewModel.passwordcontroller.text.isNotEmpty;
-    setState(() {
-      loginViewModel.isButtonEnable = emailField && passwordFiled;
-    });
   }
 
   @override
@@ -90,28 +68,25 @@ class _LoginState extends State<Login> {
                           8.h.heightBox,
                           VxTextField(
                             controller: loginViewModel.emailcontroller,
-                            validator: (value) {
-                              return loginViewModel.emailcontroller.text.isEmpty
-                                  ? "email can not be empty"
-                                  : null;
-                            },
                             fillColor: Colors.transparent,
                             borderColor: MyColors.primaryColor,
                             borderType: VxTextFieldBorderType.roundLine,
                             borderRadius: 10.r,
                             prefixIcon: const Icon(Icons.email),
+                            validator: (email) {
+                              if (email!.isEmpty) {
+                                return "email is empty";
+                              } else if (!email.isValidEmail) {
+                                return "invalid email";
+                              }
+                              return null;
+                            },
                           ),
                           20.h.heightBox,
                           "Password".text.make(),
                           8.h.heightBox,
                           VxTextField(
                             controller: loginViewModel.passwordcontroller,
-                            validator: (value) {
-                              return loginViewModel
-                                      .passwordcontroller.text.isEmpty
-                                  ? "password can not be empty"
-                                  : null;
-                            },
                             isPassword: true,
                             obscureText: true,
                             fillColor: Colors.transparent,
@@ -119,6 +94,16 @@ class _LoginState extends State<Login> {
                             borderType: VxTextFieldBorderType.roundLine,
                             borderRadius: 10.r,
                             prefixIcon: const Icon(Icons.lock),
+                            validator: (password) {
+                              if (password!.isEmpty) {
+                                return "password is empty";
+                              } else if (password.length < 8) {
+                                return "password should be of minimum 8 characters";
+                              } /* else if (!password.isValidPassword) {
+                                 return "invalid password";
+                               }*/
+                              return null;
+                            },
                           ),
                           40.h.heightBox,
                           Row(
@@ -139,17 +124,15 @@ class _LoginState extends State<Login> {
                             ],
                           ),
                           40.h.heightBox,
-                          loginViewModel.isButtonEnable
-                              ? PrimaryButton(
-                                  onPressed: () {
-                                    _validateFormAndLogin();
-                                  },
-                                  title: "Login",
-                                )
-                              : const Center(
-                                  child: ElevatedButton(
-                                      onPressed: null, child: Text("Login")),
-                                ),
+                          PrimaryButton(
+                            onPressed: () {
+                              if (loginViewModel._formKey.currentState!
+                                  .validate()) {
+                                loginViewModel.login(context);
+                              }
+                            },
+                            title: "Login",
+                          ),
                           20.h.heightBox,
                           "Don't have an account?"
                               .richText
