@@ -31,10 +31,11 @@ class Onboard extends StatelessWidget {
                 SizedBox(height: 61.h),
                 PrimaryButton(
                   title: "Get Started",
-                  onPressed: () {
-                    AutoRouter.of(context).push(
-                      const AuthRoute(),
-                    );
+                  onPressed: () async {
+                    final SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    var token = pref.getString("token");
+                    Vx.log(token);
                   },
                 ),
                 SizedBox(height: 61.h),
