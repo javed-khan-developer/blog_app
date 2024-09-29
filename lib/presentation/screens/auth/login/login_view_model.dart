@@ -4,17 +4,19 @@ class LoginViewModel {
   final Repository repository;
 
   LoginViewModel({required this.repository});
-  final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController passwordcontroller = TextEditingController();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   login(context) async {
-    var logindata = await repository.authRepo.userLogin(
-        email: emailcontroller.text,
-        password: passwordcontroller.text,
+    var loginData = await repository.authRepo.userLogin(
+        email: emailController.text,
+        password: passwordController.text,
         context: context);
-    if (logindata.accessToken != null) {
-      Utils.saveToken(logindata.accessToken.toString());
+    if (loginData.accessToken != null) {
+      UserPreference.storeString(
+          SharedPrefKeys.token, loginData.accessToken ?? '');
       AutoRouter.of(context).push(const GeneralRoute());
     } else {}
   }

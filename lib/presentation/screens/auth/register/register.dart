@@ -13,11 +13,11 @@ class _RegisterState extends State<Register> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   bool _isButtonEnable = false;
 
   void _validateForm() {
-    if (_formkey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       AutoRouter.of(context).push(const GeneralRoute());
       _emailController.clear();
       _passwordController.clear();
@@ -82,7 +82,7 @@ class _RegisterState extends State<Register> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Form(
-                      key: _formkey,
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

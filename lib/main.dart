@@ -1,3 +1,4 @@
+import 'package:blog_app/data/data_sources/local/user_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'presentation/routes/router_imports.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  UserPreference.initUserPref();
   runApp(RepositoryProvider(
     create: (context) => Repository(
       tagsRepo: TagsRepo(),
@@ -23,7 +25,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+
   final _appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

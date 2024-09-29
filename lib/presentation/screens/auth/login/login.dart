@@ -19,8 +19,8 @@ class _LoginState extends State<Login> {
 
   @override
   void dispose() {
-    loginViewModel.emailcontroller.dispose();
-    loginViewModel.passwordcontroller.dispose();
+    loginViewModel.emailController.dispose();
+    loginViewModel.passwordController.dispose();
     super.dispose();
   }
 
@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
                           "Email".text.make(),
                           8.h.heightBox,
                           VxTextField(
-                            controller: loginViewModel.emailcontroller,
+                            controller: loginViewModel.emailController,
                             fillColor: Colors.transparent,
                             borderColor: MyColors.primaryColor,
                             borderType: VxTextFieldBorderType.roundLine,
@@ -86,7 +86,7 @@ class _LoginState extends State<Login> {
                           "Password".text.make(),
                           8.h.heightBox,
                           VxTextField(
-                            controller: loginViewModel.passwordcontroller,
+                            controller: loginViewModel.passwordController,
                             isPassword: true,
                             obscureText: true,
                             fillColor: Colors.transparent,

@@ -16,11 +16,19 @@ class _SplashState extends State<Splash> {
   }
 
   moveToOnboard() async {
-    await Future.delayed(const Duration(seconds: 4), () {
-      AutoRouter.of(context).push(
-        OnboardRoute(),
-      );
+    await Future.delayed(const Duration(seconds: 2), () async {
+      await _checkIfUserIsLoggedIn(context);
     });
+  }
+
+  _checkIfUserIsLoggedIn(context) async {
+    String? token = await UserPreference.getString(SharedPrefKeys.token);
+    log('token $token');
+    if (token != null) {
+      AutoRouter.of(context).replace(const GeneralRoute());
+    } else {
+      AutoRouter.of(context).replace(OnboardRoute());
+    }
   }
 
   @override

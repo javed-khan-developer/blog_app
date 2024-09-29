@@ -3,7 +3,9 @@ part of 'onboard_imports.dart';
 @RoutePage()
 class Onboard extends StatelessWidget {
   Onboard({super.key});
+
   final OnboardViewModel _onboardViewModel = OnboardViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +34,9 @@ class Onboard extends StatelessWidget {
                 PrimaryButton(
                   title: "Get Started",
                   onPressed: () async {
-                    final SharedPreferences pref =
-                        await SharedPreferences.getInstance();
-                    var token = pref.getString("token");
-                    Vx.log(token);
-                    // AutoRouter.of(context).push(
-                    //   const AuthRoute(),
-                    // );
+                    AutoRouter.of(context).popAndPush(
+                      const AuthRoute(),
+                    );
                   },
                 ),
                 SizedBox(height: 61.h),
